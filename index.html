@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample</title>
+    
+  <script type="module" crossorigin src="/MBLearn/assets/index-DWslw3Gz.js"></script>
+  <link rel="stylesheet" crossorigin href="/MBLearn/assets/index-b0rkd92E.css">
+</head>
+<style>
+    #item{
+        position: absolute;
+        z-index: 9;
+        background-color: #f1f1f1;
+        text-align: center;
+        border: 1px solid #d3d3d3;
+        width: 200px;
+    }
+    #itemheader{
+        padding: 10px;
+        cursor: move;
+        z-index: 10;
+        background-color: #2196F3;
+        color: #fff;
+    }
+</style>
+<body>
+
+    <div class="text-3xl font-bold underline">
+        <p>This is a sample text to provide idea to use <strong>Tailwind CSS.</strong></p>
+    </div>
+
+    <div id="root"></div>
+
+    <h1>Sample Drag Element</h1>
+    <p class="">drag element below</p>
+
+    <div id="item" class="bg-black">
+        <div id="itemheader">
+            <p>header</p>
+        </div>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium velit beatae quae voluptatem sequi modi est recusandae animi incidunt saepe nemo ut aliquid tempora itaque vel, cum sunt explicabo et.</p>
+    </div>
+</body>
+<script>
+    dragable(document.getElementById("item"));
+
+    function dragable(element) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+    if (document.getElementById(element.id + "header")) {
+        document.getElementById(element.id + "header").onmousedown = drag;
+    } else {
+        element.onmousedown = drag;
+    }
+
+    function drag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+
+        document.onmouseup = undrag;
+        document.onmousemove = move; // Assign move directly as the event handler
+    }
+
+    function move(e) {
+        e = e || window.event;
+        e.preventDefault();
+
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+
+        // Access the element directly from the parent scope
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+    }
+
+    function undrag() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+</script>
+</html>
