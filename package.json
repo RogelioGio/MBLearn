@@ -2,7 +2,7 @@
   "homepage": "https://rogeliogio.github.io/MBLearn-Project",
   "scripts": {
     "dev:watch": "concurrently \"npx tailwindcss -i ./style/globals.css -o ./style/output.css --watch\" \"npm run dev\"",
-    "tailwind:watch" : "npx tailwindcss -i ./style/globals.css -o ./style/output.css --watch",
+    "tailwind:watch": "npx tailwindcss -i ./style/globals.css -o ./style/output.css --watch",
     "dev": "vite",
     "build": "vite build",
     "predeploy": "npm run build",
