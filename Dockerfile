@@ -1,6 +1,11 @@
 # Use the official PHP image
 FROM php:8.0-apache
 
+# Install system dependencies required for PostgreSQL
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql
+
 # Set the working directory
 WORKDIR /var/www/html
 
